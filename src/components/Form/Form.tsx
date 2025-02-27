@@ -1,4 +1,4 @@
-import { useForm, FormProvider, useFieldArray, Controller } from "react-hook-form";
+import { useForm, FormProvider, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formMemberSchema, formMemberData } from "../../schema/schemaFormValidation";
 import { validStack, validLevel } from "../../types/formOptions";
@@ -6,11 +6,11 @@ import Input from "../Input/Input";
 import Select from "../Select/Select";
 import ProfessionalProfileField from "../ProfessionalProfileField/ProfessionalProfileField";
 import { CiCirclePlus } from "react-icons/ci";
-import { Autocomplete, Chip, TextField } from "@mui/material";
 import useSkillsHandler from "../../hooks/useSkillsHandle";
+import AutocompleteSkills from "../AutocompleteSkills/Autocomplete";
 
 const Form = () => {
-  const { skills } = useSkillsHandler();
+  const { hardSkills, softSkills } = useSkillsHandler();
 
   const methods = useForm<formMemberData>({
     mode: "all",
@@ -21,7 +21,8 @@ const Form = () => {
         url: "",
         platform: "",
       }],
-      skills: []    
+      hardSkills: [],
+      softSkills: [],    
     }
   });
 
@@ -39,7 +40,7 @@ const Form = () => {
   return(
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(handleSubmitForm)} className="flex flex-col gap-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-start justify-between">
           <div className="w-[40%]">
             <Input 
               id="name" 
@@ -75,45 +76,6 @@ const Form = () => {
           />
         ))}
 
-        <Controller
-          name="skills"
-          control={control}
-          render={({ field }) => (
-            <Autocomplete
-              multiple 
-              options={skills}
-              getOptionLabel={(option) => option.name}
-              value={skills.filter(skill => (field.value || []).includes(skill.id))}
-              onChange={(_, value) => field.onChange(value.map((v) => v.id))}
-              renderInput={(params) => (
-                <TextField 
-                  {...params} 
-                  label="Escolha suas skills"
-                  error={!!errors.skills}
-                  helperText={errors.skills ? "Escolha uma opção válida!" : ""}
-                  sx={{
-                    "& .MuiInputBase-input, & .MuiInputLabel-root, & .MuiSvgIcon-root, & .MuiOutlinedInput-root fieldset": {
-                      color: "gray",
-                      borderColor: "gray",
-                    },
-                    "& .MuiOutlinedInput-root:hover fieldset, & .MuiOutlinedInput-root.Mui-focused fieldset": {
-                      borderColor: "gray",
-                    }
-                  }}
-                />
-              )}
-              renderTags={(value, getTagProps) =>
-                value.map((option, index) => (
-                  <Chip 
-                    label={option.name}
-                    {...getTagProps({index})}
-                  />
-                ))
-              }
-            />
-          )} 
-        />
-
         <div className="flex justify-center">
           <button 
             type="button"
@@ -126,6 +88,18 @@ const Form = () => {
             <CiCirclePlus /> Adicionar perfil social
           </button>
         </div>
+
+        <AutocompleteSkills 
+          name="hardSkills"
+          label="Hardskills"
+          skills={hardSkills}
+        />
+
+        <AutocompleteSkills 
+          name="softSkills"
+          label="Softskills"
+          skills={softSkills}
+        />
         
         <div className="flex justify-center">
           <button 

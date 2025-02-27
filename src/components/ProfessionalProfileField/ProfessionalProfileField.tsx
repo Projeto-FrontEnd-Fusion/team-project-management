@@ -62,12 +62,14 @@ const ProfessionalProfileField = ({
           <p className="text-xs text-red-600">{errors.professionalProfiles[index]?.platform?.message}</p>
         )}
       </div>
-
-      {index > 0 && (
-        <button type="button" className="hover:cursor-pointer" onClick={() => remove(index)}>
-          <IoIosCloseCircle  className="text-red-600 text-2xl"/>
-        </button>
-      )}
+      
+      <div className="h-24 flex items-center justify-center">
+        {index > 0 && (
+          <button type="button" className="hover:cursor-pointer" onClick={() => remove(index)}>
+            <IoIosCloseCircle  className="text-red-600 text-2xl"/>
+          </button>
+        )}
+      </div>
     </div>
   );
 };

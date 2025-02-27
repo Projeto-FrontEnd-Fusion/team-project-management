@@ -15,7 +15,8 @@ export const formMemberSchema = z.object({
         platform: z.string().nonempty("Por favor, selecione uma plataforma válida"),
       })
   ),
-  skills: z.array(z.string()), // Agora validamos um objeto Skill
+  hardSkills: z.array(z.string()),
+  softSkills: z.array(z.string()),
 });
 
 export type formMemberData = z.infer<typeof formMemberSchema>;

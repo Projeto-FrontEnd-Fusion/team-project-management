@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-type Skill = {
+export interface Skill {
   id: string;
   name: string;
 };
 
 const useSkillsHandler = () => {
-  const [skills, setSkills] = useState<Skill[]>([]);
+  const [hardSkills, setHardSkills] = useState<Skill[]>([]);
   const [softSkills, setSoftSkills] = useState<Skill[]>([]);
 
-  const fetchSkills = async (): Promise<Skill[]> => {
+  const fetchHardSkills = async (): Promise<Skill[]> => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve([
@@ -34,11 +34,11 @@ const useSkillsHandler = () => {
   };
 
   useEffect(() => {
-    fetchSkills().then((data) => setSkills(data));
+    fetchHardSkills().then((data) => setHardSkills(data));
     fetchSoftSkills().then((data) => setSoftSkills(data));
   }, []);
 
-  return { skills, softSkills };
+  return { hardSkills, softSkills };
 };
 
 export default useSkillsHandler;
