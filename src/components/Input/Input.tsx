@@ -7,11 +7,11 @@ interface InputProps extends ComponentProps<"input"> {
   label: string;
 }
 
-const Input = ({ 
-  id, 
-  placeholder, 
-  label, 
-  ...props 
+const Input = ({
+  id,
+  placeholder,
+  label,
+  ...props
 }: InputProps) => {
   const { register, formState: { errors } } = useFormContext();
 
@@ -28,7 +28,7 @@ const Input = ({
         placeholder={placeholder}
         {...register(id)}
         {...props}
-        className="text-gray-400 font-bold border-1 p-1.5 rounded-lg"
+        className="text-gray-400 font-bold border-1 p-[6px] rounded-lg"
       />
 
       {errors[id] && <p className="text-xs text-red-500">{errors[id].message?.toString()}</p>}

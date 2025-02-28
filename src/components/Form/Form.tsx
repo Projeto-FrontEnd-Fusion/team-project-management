@@ -22,7 +22,7 @@ const Form = () => {
         platform: "",
       }],
       hardSkills: [],
-      softSkills: [],    
+      softSkills: [],
     }
   });
 
@@ -36,32 +36,32 @@ const Form = () => {
   const handleSubmitForm = (data: formMemberData) => {
     console.log(data);
   };
-  
-  return(
+
+  return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(handleSubmitForm)} className="flex flex-col gap-8">
-        <div className="flex items-start justify-between">
-          <div className="w-[40%]">
-            <Input 
-              id="name" 
-              placeholder="Digite seu nome" 
+        <div className="w-full flex justify-between gap-4 flex-wrap xl:flex-nowrap">
+          <div className="w-full">
+            <Input
+              id="name"
+              placeholder="Digite seu nome"
               label="Nome"
             />
           </div>
-        
-          <div className="flex justify-end gap-8">
-            <Select 
+
+          <div className="flex flex-col gap-4 w-full md:flex-row xl:mt-0">
+            <Select
               id="stack"
               defaultOption="Selecione uma stack..."
               label="Stack"
-              options={validStack}  
+              options={validStack}
             />
 
-            <Select 
+            <Select
               id="level"
               defaultOption="Selecione um Level..."
               label="Level"
-              options={validLevel}  
+              options={validLevel}
             />
           </div>
         </div>
@@ -77,7 +77,7 @@ const Form = () => {
         ))}
 
         <div className="flex justify-center">
-          <button 
+          <button
             type="button"
             className="flex items-center gap-3 rounded-lg bg-black pl-4 py-0.5 w-64 text-gray-400 text-center border border-gray-400"
             onClick={() => append({
@@ -89,20 +89,20 @@ const Form = () => {
           </button>
         </div>
 
-        <AutocompleteSkills 
+        <AutocompleteSkills
           name="hardSkills"
           label="Hardskills"
           skills={hardSkills}
         />
 
-        <AutocompleteSkills 
+        <AutocompleteSkills
           name="softSkills"
           label="Softskills"
           skills={softSkills}
         />
-        
+
         <div className="flex justify-center">
-          <button 
+          <button
             type="submit"
             className="bg-green-600 rounded-lg p-2 text-black"
           >

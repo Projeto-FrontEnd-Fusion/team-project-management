@@ -8,33 +8,33 @@ interface SelectProps extends ComponentProps<"select"> {
   options: readonly string[];
 }
 
-const Select = ({ 
-  id, 
-  defaultOption, 
-  label, 
-  options, 
-  ...props 
+const Select = ({
+  id,
+  defaultOption,
+  label,
+  options,
+  ...props
 }: SelectProps) => {
   const { register, formState: { errors } } = useFormContext();
 
   return (
-    <div className="flex flex-col gap-2">
-      <label 
+    <div className="flex flex-col gap-2 w-full">
+      <label
         htmlFor={id}
         className="text-gray-400"
       >
         {label}
       </label>
 
-      <select 
+      <select
         id={id}
-        defaultValue="" 
+        defaultValue=""
         {...props}
         {...register(id)}
-        className="text-gray-400 font-bold border-1 p-1.5 rounded-lg"
+        className="text-gray-400 font-bold border-1 p-2 rounded-lg"
       >
         <option value="" disabled>{defaultOption}</option>
-        
+
         {options.map((option, index) => (
           <option value={option} key={index}>{option}</option>
         ))}

@@ -10,18 +10,18 @@ interface ProfessionalProfileFieldProps {
   remove: (index: number) => void;
 }
 
-const ProfessionalProfileField = ({ 
-  fieldId, 
-  index, 
-  errors, 
-  remove 
-} : ProfessionalProfileFieldProps) => {
+const ProfessionalProfileField = ({
+  fieldId,
+  index,
+  errors,
+  remove
+}: ProfessionalProfileFieldProps) => {
 
   const { register } = useFormContext();
 
   return (
-    <div key={fieldId} className="flex items-start justify-between gap-2">
-      <div className="flex flex-col gap-2 w-[60%]">
+    <div key={fieldId} className="flex flex-col justify-items-center justify-between gap-2 lg:flex-row">
+      <div className="flex flex-col gap-2 w-full">
         <label htmlFor={`professionalProfiles.${index}.url`} className="text-gray-400">
           Perfil Profissional (links)
         </label>
@@ -37,39 +37,43 @@ const ProfessionalProfileField = ({
           <p className="text-xs text-red-600">{errors.professionalProfiles[index]?.url?.message}</p>
         )}
       </div>
-      
-      <div className="flex flex-col gap-2">
+
+      <div className="flex flex-col w-full gap-2">
         <label htmlFor={`professionalProfiles.${index}.platform`} className="text-gray-400">
           Plataforma
         </label>
 
-        <select
-          id={`professionalProfiles.${index}.platform`}
-          {...register(`professionalProfiles.${index}.platform`)}
-          className="text-gray-400 font-bold border p-1.5 rounded-lg"
-        >
-          <option value="" disabled>
-            Selecione uma plataforma...
-          </option>
-          {validPlataform.map((platform, idx) => (
-            <option value={platform} key={idx}>
-              {platform}
-            </option>
-          ))}
-        </select>
+        <div className="flex flex-row w-full gap-1">
 
+          <select
+            id={`professionalProfiles.${index}.platform`}
+            {...register(`professionalProfiles.${index}.platform`)}
+            className="w-full text-gray-400 font-bold border p-2 rounded-lg"
+          >
+            <option value="" disabled>
+              Selecione uma plataforma...
+            </option>
+            {validPlataform.map((platform, idx) => (
+              <option value={platform} key={idx}>
+                {platform}
+              </option>
+            ))}
+
+          </select>
+
+          <div className="items-center">
+            {index > 0 && (
+              <button type="button" className="hover:cursor-pointer self-center" onClick={() => remove(index)}>
+                <IoIosCloseCircle className="text-red-600 text-2xl" />
+              </button>
+            )}
+          </div>
+        </div>
         {errors?.professionalProfiles?.[index]?.platform && (
           <p className="text-xs text-red-600">{errors.professionalProfiles[index]?.platform?.message}</p>
         )}
       </div>
-      
-      <div className="h-24 flex items-center justify-center">
-        {index > 0 && (
-          <button type="button" className="hover:cursor-pointer" onClick={() => remove(index)}>
-            <IoIosCloseCircle  className="text-red-600 text-2xl"/>
-          </button>
-        )}
-      </div>
+
     </div>
   );
 };
