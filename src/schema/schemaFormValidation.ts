@@ -15,7 +15,7 @@ export const formMemberSchema = z.object({
         platform: z.string().nonempty("Por favor, selecione uma plataforma válida"),
       })
   ),
-  hardSkills: z.array(z.string()),
+  skills: z.array(z.string()),
   softSkills: z.array(z.string()),
 });
 

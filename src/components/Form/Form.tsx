@@ -8,9 +8,13 @@ import ProfessionalProfileField from "../ProfessionalProfileField/ProfessionalPr
 import { CiCirclePlus } from "react-icons/ci";
 import useSkillsHandler from "../../hooks/useSkillsHandle";
 import AutocompleteSkills from "../AutocompleteSkills/Autocomplete";
+import { useSubmitMemberForm } from "../../hooks/useSubmitMemberForm";
+import useSoftskillsHandler from "../../hooks/useSoftskillsHandle";
 
 const Form = () => {
-  const { hardSkills, softSkills } = useSkillsHandler();
+  const skills = useSkillsHandler()?.data ?? [];
+  const softskills = useSoftskillsHandler()?.data ?? [];
+  const { mutate } = useSubmitMemberForm();
 
   const methods = useForm<formMemberData>({
     mode: "all",
@@ -21,7 +25,7 @@ const Form = () => {
         url: "",
         platform: "",
       }],
-      hardSkills: [],
+      skills: [],
       softSkills: [],
     }
   });
@@ -34,7 +38,7 @@ const Form = () => {
   });
 
   const handleSubmitForm = (data: formMemberData) => {
-    console.log(data);
+    mutate(data);
   };
 
   return (
@@ -90,15 +94,15 @@ const Form = () => {
         </div>
 
         <AutocompleteSkills
-          name="hardSkills"
-          label="Hardskills"
-          skills={hardSkills}
+          name="skills"
+          label="skills"
+          skills={skills}
         />
 
         <AutocompleteSkills
           name="softSkills"
           label="Softskills"
-          skills={softSkills}
+          skills={softskills}
         />
 
         <div className="flex justify-center">

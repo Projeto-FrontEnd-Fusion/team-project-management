@@ -12,12 +12,12 @@ interface Project {
 }
 
 export interface UserProfile {
-  name: string;
-  professional_profile_url: ProfessionalProfile[];
-  stack: string;
-  community_level: string;
+  name: string; 
+  professional_profile_url: ProfessionalProfile[]; 
+  stack: string; 
+  community_level: string; 
   current_squad: string;
-  skills: string[];
+  skills: string[]; 
   projects: Project[];
-  softskills: string[];
+  softskills: string[]; 
 }

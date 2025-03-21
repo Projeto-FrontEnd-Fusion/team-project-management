@@ -1,0 +1,86 @@
+{
+  "members": [
+    {
+      "id": "640a",
+      "name": "Maria",
+      "stack": "Frontend",
+      "level": "Code Wizard",
+      "professionalProfiles": [
+        {
+          "url": "https://github.com/",
+          "platform": "GitHub"
+        }
+      ],
+      "skills": [
+        "2"
+      ],
+      "softSkills": [
+        "4"
+      ]
+    },
+    {
+      "id": "0306",
+      "name": "teste de skills",
+      "stack": "Frontend",
+      "level": "Code Wizard",
+      "professionalProfiles": [
+        {
+          "url": "https://github.com/",
+          "platform": "LinkedIn"
+        }
+      ],
+      "skills": [
+        "2",
+        "5"
+      ],
+      "softSkills": [
+        "3",
+        "1"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "1",
+      "name": "JavaScript"
+    },
+    {
+      "id": "2",
+      "name": "TypeScript"
+    },
+    {
+      "id": "3",
+      "name": "React"
+    },
+    {
+      "id": "4",
+      "name": "Node.js"
+    },
+    {
+      "id": "5",
+      "name": "Tailwind CSS"
+    },
+    {
+      "id": "6",
+      "name": "MongoDB"
+    }
+  ],
+  "softSkills": [
+    {
+      "id": "1",
+      "name": "Comunicação"
+    },
+    {
+      "id": "2",
+      "name": "Trabalho em equipe"
+    },
+    {
+      "id": "3",
+      "name": "Resolução de problemas"
+    },
+    {
+      "id": "4",
+      "name": "Criatividade"
+    }
+  ]
+}

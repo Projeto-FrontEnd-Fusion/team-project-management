@@ -1,12 +1,15 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { Autocomplete, Chip, TextField } from "@mui/material";
-import { Skill } from "../../hooks/useSkillsHandle";
 
+interface Skill {
+  id: number;
+  name: string;
+};
 interface AutocompleteSkillsProps {
   name: string;
   label: string;
   skills: Skill[];
-}
+};
 
 const AutocompleteSkills = ( {name, label, skills} : AutocompleteSkillsProps ) => {
 
