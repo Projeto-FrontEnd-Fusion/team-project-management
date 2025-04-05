@@ -9,6 +9,11 @@ export const formMemberSchema = z.object({
   level: z.enum(validLevel, {
     message: "Por favor, selecione um level válido.",
   }),
+  profileImage: z.instanceof(FileList)
+    .refine((files) => files?.length === 1, 'A imagem de perfil é obrigatória')
+    .refine((files) => files[0]?.size <= 5 * 1024 * 1024, 'O tamanho máximo é 5MB')
+    .refine((files) => ['image/jpeg', 'image/png', 'image/webp'].includes(files[0]?.type), 
+      'Apenas formatos .jpeg, .png e .webp são suportados'),
   professionalProfiles: z.array(
       z.object({
         url: z.string().url("URL inválida"),

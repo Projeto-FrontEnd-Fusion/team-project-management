@@ -1,37 +1,37 @@
 import { ComponentProps } from "react";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, FieldError } from "react-hook-form";
 
 interface InputProps extends ComponentProps<"input"> {
   id: string;
-  placeholder: string;
   label: string;
 }
 
-const Input = ({
-  id,
-  placeholder,
-  label,
-  ...props
-}: InputProps) => {
-  const { register, formState: { errors } } = useFormContext();
+const Input = ({ id, label, type = "text", ...props }: InputProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  const fieldError = errors[id] as FieldError | undefined;
 
   return (
     <div className="flex flex-col gap-2">
-      <label
-        htmlFor={id}
-        className="text-gray-400">
+      <label htmlFor={id} className="text-gray-400">
         {label}
       </label>
 
       <input
         id={id}
-        placeholder={placeholder}
+        type={type}
         {...register(id)}
         {...props}
         className="text-gray-400 font-bold border-1 p-[6px] rounded-lg"
+        {...(type === "file" && { value: undefined })}
       />
 
-      {errors[id] && <p className="text-xs text-red-500">{errors[id].message?.toString()}</p>}
+      {fieldError && (
+        <p className="text-xs text-red-500">{fieldError.message}</p>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@
       "name": "Maria",
       "stack": "Frontend",
       "level": "Code Wizard",
+      "profileImage": "https://example.com/maria.jpg",
       "professionalProfiles": [
         {
           "url": "https://github.com/",
@@ -16,26 +17,6 @@
       ],
       "softSkills": [
         "4"
-      ]
-    },
-    {
-      "id": "0306",
-      "name": "teste de skills",
-      "stack": "Frontend",
-      "level": "Code Wizard",
-      "professionalProfiles": [
-        {
-          "url": "https://github.com/",
-          "platform": "LinkedIn"
-        }
-      ],
-      "skills": [
-        "2",
-        "5"
-      ],
-      "softSkills": [
-        "3",
-        "1"
       ]
     }
   ],

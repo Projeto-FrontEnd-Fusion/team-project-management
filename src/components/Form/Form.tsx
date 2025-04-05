@@ -21,6 +21,7 @@ const Form = () => {
     criteriaMode: "all",
     resolver: zodResolver(formMemberSchema),
     defaultValues: {
+      profileImage: new DataTransfer().files,
       professionalProfiles: [{
         url: "",
         platform: "",
@@ -48,8 +49,9 @@ const Form = () => {
           <div className="w-full">
             <Input
               id="name"
-              placeholder="Digite seu nome"
               label="Nome"
+              placeholder="Digite seu nome"
+              type="text"
             />
           </div>
 
@@ -68,6 +70,15 @@ const Form = () => {
               options={validLevel}
             />
           </div>
+        </div>
+
+        <div>
+          <Input 
+            id="profileImage"
+            label="Imagem de usuário"
+            type="file"
+            accept="image/"
+          />
         </div>
 
         {fields.map((field, index) => (
