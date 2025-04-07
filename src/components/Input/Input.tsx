@@ -25,7 +25,7 @@ const Input = ({ id, label, type = "text", ...props }: InputProps) => {
         type={type}
         {...register(id)}
         {...props}
-        className="text-gray-400 font-bold border-1 p-[6px] rounded-lg"
+        className="text-gray-400 font-bold border-1 p-[6px] rounded-lg border-gray-400"
         {...(type === "file" && { value: undefined })}
       />
 

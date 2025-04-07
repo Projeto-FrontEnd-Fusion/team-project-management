@@ -18,6 +18,27 @@
       "softSkills": [
         "4"
       ]
+    },
+    {
+      "id": "efca",
+      "name": "teste rotas",
+      "stack": "Frontend",
+      "level": "Code Wizard",
+      "profileImage": {
+        "0": {}
+      },
+      "professionalProfiles": [
+        {
+          "url": "https://github.com/",
+          "platform": "LinkedIn"
+        }
+      ],
+      "skills": [
+        "2"
+      ],
+      "softSkills": [
+        "3"
+      ]
     }
   ],
   "skills": [
