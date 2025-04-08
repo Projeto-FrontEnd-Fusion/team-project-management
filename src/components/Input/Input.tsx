@@ -4,11 +4,9 @@ import { useFormContext, FieldError } from "react-hook-form";
 interface InputProps extends ComponentProps<"input"> {
   id: string;
   label: string;
-  labelStyle?: string;
-  inputStyle?: string;
 }
 
-const Input = ({ id, label, type = "text", labelStyle, inputStyle, ...props }: InputProps) => {
+const Input = ({ id, label, type = "text", ...props }: InputProps) => {
   const {
     register,
     formState: { errors },
@@ -18,7 +16,7 @@ const Input = ({ id, label, type = "text", labelStyle, inputStyle, ...props }: I
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className={`text-gray-400 ${labelStyle}`}>
+      <label htmlFor={id} className="text-gray-400">
         {label}
       </label>
 
@@ -27,7 +25,7 @@ const Input = ({ id, label, type = "text", labelStyle, inputStyle, ...props }: I
         type={type}
         {...register(id)}
         {...props}
-        className={`text-gray-400 font-bold border-1 p-[6px] rounded-lg border-gray-400 ${inputStyle}`}
+        className="text-gray-400 font-bold border-1 p-[6px] rounded-lg border-gray-400"
         {...(type === "file" && { value: undefined })}
       />
 
