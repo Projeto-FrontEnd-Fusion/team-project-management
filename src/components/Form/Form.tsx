@@ -111,7 +111,16 @@ const Form = () => {
                 name="skills"
                 label="skills"
                 skills={skills}
+            <div>
+              <Input
+                id="profileImage"
+                label="Imagem de usuário"
+                type="file"
+                accept="image/"
+                inputStyle="hidden"
+                labelStyle="text-gray-400 font-bold border-1 p-[6px] rounded-lg border-gray-400 hover:cursor-pointer"
               />
+            </div>
 
               <AutocompleteSkills
                 name="softSkills"
