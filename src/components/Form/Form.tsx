@@ -44,73 +44,37 @@ const Form = () => {
 
   return (
     <main className="min-h-screen flex flex-col items-center p-12">
-        <section className="bg-neutral-900 rounded-md w-[80%] p-8 shadow-2xl">
-          <h3 className="font-semibold text-xl text-white mb-8">Cadastrar novo membro</h3>
-          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(handleSubmitForm)} className="flex flex-col gap-8">
-              <div className="w-full flex justify-between gap-4 flex-wrap xl:flex-nowrap">
-                <div className="w-full">
-                  <Input
-                    id="name"
-                    label="Nome"
-                    placeholder="Digite seu nome"
-                    type="text"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-4 w-full md:flex-row xl:mt-0">
-                  <Select
-                    id="stack"
-                    defaultOption="Selecione uma stack..."
-                    label="Stack"
-                    options={validStack}
-                  />
-
-                  <Select
-                    id="level"
-                    defaultOption="Selecione um Level..."
-                    label="Level"
-                    options={validLevel}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Input 
-                  id="profileImage"
-                  label="Imagem de usuário"
-                  type="file"
-                  accept="image/"
+      <section className="bg-neutral-900 rounded-md w-[80%] p-8 shadow-2xl">
+        <h3 className="font-semibold text-xl text-white mb-8">Cadastrar novo membro</h3>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(handleSubmitForm)} className="flex flex-col gap-8">
+            <div className="w-full flex justify-between gap-4 flex-wrap xl:flex-nowrap">
+              <div className="w-full">
+                <Input
+                  id="name"
+                  label="Nome"
+                  placeholder="Digite seu nome"
+                  type="text"
                 />
               </div>
 
-              {fields.map((field, index) => (
-                <ProfessionalProfileField
-                  key={field.id}
-                  fieldId={field.id}
-                  index={index}
-                  errors={errors}
-                  remove={remove}
+              <div className="flex flex-col gap-4 w-full md:flex-row xl:mt-0">
+                <Select
+                  id="stack"
+                  defaultOption="Selecione uma stack"
+                  label="Stack"
+                  options={validStack}
                 />
-              ))}
 
-              <div className="flex justify-center">
-                <button
-                  type="button"
-                  className="flex items-center gap-3 rounded-lg bg-black pl-4 py-0.5 w-64 text-gray-400 text-center border border-gray-400"
-                  onClick={() => append({
-                    url: "",
-                    platform: "",
-                  })}
-                >
-                  <CiCirclePlus /> Adicionar perfil social
-                </button>
+                <Select
+                  id="level"
+                  defaultOption="Selecione um Level"
+                  label="Level"
+                  options={validLevel}
+                />
               </div>
+            </div>
 
-              <AutocompleteSkills
-                name="skills"
-                label="skills"
-                skills={skills}
             <div>
               <Input
                 id="profileImage"
@@ -122,24 +86,53 @@ const Form = () => {
               />
             </div>
 
-              <AutocompleteSkills
-                name="softSkills"
-                label="Softskills"
-                skills={softskills}
+            {fields.map((field, index) => (
+              <ProfessionalProfileField
+                key={field.id}
+                fieldId={field.id}
+                index={index}
+                errors={errors}
+                remove={remove}
               />
+            ))}
 
-              <div className="flex justify-center">
-                <button
-                  type="submit"
-                  className="bg-green-600 rounded-lg p-2 text-black"
-                >
-                  Finalizar Cadastro
-                </button>
-              </div>
-            </form>
-          </FormProvider>
-        </section>
-      </main>
+            <div className="flex justify-center">
+              <button
+                type="button"
+                className="flex items-center gap-3 rounded-lg bg-black pl-4 py-0.5 w-64 text-gray-400 text-center border border-gray-400"
+                onClick={() => append({
+                  url: "",
+                  platform: "",
+                })}
+              >
+                <CiCirclePlus /> Adicionar perfil social
+              </button>
+            </div>
+
+            <AutocompleteSkills
+              name="skills"
+              label="skills"
+              skills={skills}
+            />
+
+            <AutocompleteSkills
+              name="softSkills"
+              label="Softskills"
+              skills={softskills}
+            />
+
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="bg-green-600 rounded-lg p-2 text-black"
+              >
+                Finalizar Cadastro
+              </button>
+            </div>
+          </form>
+        </FormProvider>
+      </section>
+    </main>
   )
 };
 
