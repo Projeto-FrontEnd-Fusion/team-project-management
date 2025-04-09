@@ -43,8 +43,8 @@ const Form = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center p-12">
-      <section className="bg-neutral-900 rounded-md w-[80%] p-8 shadow-2xl">
+    <main className="min-h-screen flex flex-col items-center p-4 sm:p-10 lg:p-14">
+      <section className="bg-neutral-900 rounded-md w-full p-8 shadow-2xl">
         <h3 className="font-semibold text-xl text-white mb-8">Cadastrar novo membro</h3>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleSubmitForm)} className="flex flex-col gap-8">
@@ -97,13 +97,13 @@ const Form = () => {
             <div className="flex justify-center">
               <button
                 type="button"
-                className="flex items-center gap-3 rounded-lg bg-black pl-4 py-0.5 w-64 text-gray-400 text-center border border-gray-400"
+                className="flex font-bold items-center gap-3 px-2 py-2 rounded-lg bg-[#0f0f0f] w-64 text-gray-400 text-center border border-gray-400 hover:cursor-pointer hover:bg-[#1a1a1a] transition-all duration-100 ease-in-out"
                 onClick={() => append({
                   url: "",
                   platform: "",
                 })}
               >
-                <CiCirclePlus /> Adicionar perfil social
+                <CiCirclePlus className="scale-105" /> Adicionar perfil social
               </button>
             </div>
 
@@ -122,7 +122,7 @@ const Form = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-green-600 rounded-lg p-2 text-black"
+                className="bg-green-600 rounded-lg p-2 text-black hover:bg-green-500 hover:cursor-pointer focus:scale-105 transition-all duration-100 ease-in-out"
               >
                 Finalizar Cadastro
               </button>

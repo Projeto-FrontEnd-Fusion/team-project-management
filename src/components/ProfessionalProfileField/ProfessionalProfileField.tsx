@@ -1,7 +1,7 @@
 import { FieldErrors, useFormContext } from "react-hook-form";
 import { validPlataform } from "../../types/formOptions";
 import { formMemberData } from "../../schema/schemaFormValidation";
-import { IoIosCloseCircle } from "react-icons/io";
+import { IoIosClose } from "react-icons/io";
 
 interface ProfessionalProfileFieldProps {
   fieldId: string;
@@ -61,10 +61,10 @@ const ProfessionalProfileField = ({
 
           </select>
 
-          <div className="items-center">
+          <div className="flex items-center pl-4">
             {index > 0 && (
               <button type="button" className="hover:cursor-pointer self-center" onClick={() => remove(index)}>
-                <IoIosCloseCircle className="text-orange-400 text-2xl" />
+                <IoIosClose className="scale-200 text-gray-400 hover:scale-250 transition-all duration-200 ease-in-out" />
               </button>
             )}
           </div>
