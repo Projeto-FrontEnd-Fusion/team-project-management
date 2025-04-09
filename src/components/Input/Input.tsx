@@ -30,7 +30,7 @@ const Input = ({ id, label, type = "text", ...props }: InputProps) => {
       />
 
       {fieldError && (
-        <p className="text-xs text-red-500">{fieldError.message}</p>
+        <p className="text-xs font-bold text-orange-400">{fieldError.message}</p>
       )}
     </div>
   );

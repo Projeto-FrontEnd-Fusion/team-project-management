@@ -42,7 +42,7 @@ const Select = ({
       </select>
 
       {errors[id] && (
-        <p className="text-xs text-red-600">{errors[id].message?.toString()}</p>
+        <p className="text-xs font-bold text-orange-400">{errors[id].message?.toString()}</p>
       )}
     </div>
   );

@@ -34,7 +34,7 @@ const ProfessionalProfileField = ({
         />
 
         {errors?.professionalProfiles?.[index]?.url && (
-          <p className="text-xs text-red-600">{errors.professionalProfiles[index]?.url?.message}</p>
+          <p className="text-xs font-bold text-orange-400">{errors.professionalProfiles[index]?.url?.message}</p>
         )}
       </div>
 
@@ -64,13 +64,13 @@ const ProfessionalProfileField = ({
           <div className="items-center">
             {index > 0 && (
               <button type="button" className="hover:cursor-pointer self-center" onClick={() => remove(index)}>
-                <IoIosCloseCircle className="text-red-600 text-2xl" />
+                <IoIosCloseCircle className="text-orange-400 text-2xl" />
               </button>
             )}
           </div>
         </div>
         {errors?.professionalProfiles?.[index]?.platform && (
-          <p className="text-xs text-red-600">{errors.professionalProfiles[index]?.platform?.message}</p>
+          <p className="text-xs font-bold text-orange-400">{errors.professionalProfiles[index]?.platform?.message}</p>
         )}
       </div>
 
