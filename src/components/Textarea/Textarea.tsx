@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
 import { useFormContext, FieldError } from "react-hook-form";
+import { get } from "lodash";
 
 interface textareaProps extends ComponentProps<"textarea"> {
   id: string;
@@ -12,7 +13,7 @@ const Textarea = ({ id, label, ...props }: textareaProps) => {
     formState: { errors },
   } = useFormContext();
 
-  const fieldError = errors[id] as FieldError | undefined;
+  const fieldError = get(errors, id) as FieldError | undefined;
 
   return (
     <div className="flex flex-col gap-2">
@@ -28,7 +29,7 @@ const Textarea = ({ id, label, ...props }: textareaProps) => {
       />
 
       {fieldError && (
-        <p className="text-xs font-bold text-orange-400">{fieldError.message}</p>
+        <p className="text-xs font-bold text-orange-400">{String(fieldError.message)}</p>
       )}
     </div>
   );

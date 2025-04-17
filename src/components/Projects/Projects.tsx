@@ -1,5 +1,8 @@
-import { FormProvider, useForm } from "react-hook-form";
-import { formProjectsData, formProjectsSchema } from "../../schema/projectsFormSchema";
+import { FormProvider, useFieldArray, useForm } from "react-hook-form";
+import {
+  formProjectsData,
+  formProjectsSchema,
+} from "../../schema/projectsFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../Input/Input";
 import Textarea from "../Textarea/Textarea";
@@ -14,60 +17,100 @@ const Projects = () => {
     criteriaMode: "all",
     resolver: zodResolver(formProjectsSchema),
     defaultValues: {
-      projectName: "",
-      image: new DataTransfer().files,
-      deployLink: "",
-      githubLink: "",
-      skills: [],
-      description: "",
-    }
+      projects: [
+        {
+          projectName: "",
+          image: new DataTransfer().files,
+          deployLink: "",
+          githubLink: "",
+          skills: [],
+          description: "",
+        },
+      ],
+    },
   });
 
-  return(
+  const { control, handleSubmit } = methods;
+  const { fields, append } = useFieldArray({
+    control,
+    name: "projects",
+  });
+
+  const onSubmit = (data: formProjectsData) => {
+    console.log(data);
+  };
+
+  return (
     <main className="min-h-screen flex flex-col items-center p-4 sm:p-10 lg:p-14">
       <section className="bg-neutral-900 rounded-md w-full p-8 shadow-2xl">
-        <h1 className="font-semibold text-xl text-white mb-8">Cadastrar Projetos</h1>
+        <h1 className="font-semibold text-xl text-white mb-8">
+          Cadastrar Projetos
+        </h1>
 
         <FormProvider {...methods}>
-          <form className="flex flex-col gap-8">
-            <Input 
-              id="projectName"
-              label="Nome do Projeto"
-              placeholder="Ex: Portfólio pessoal, Sistema de Vendas..."
-            />
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-8"
+          >
+            {fields.map((field, index) => (
+              <div
+                className="border-t border-gray-400 flex flex-col gap-8 pt-8"
+                key={field.id}
+              >
+                <h2 className="font-bold text-gray-400">Projeto {index + 1}</h2>
 
-            <Input 
-              id="image"
-              label="Imagem"
-              type="file"
-              accept="image/"
-            />
+                <Input
+                  id={`projects.${index}.projectName`}
+                  label="Nome do Projeto"
+                  placeholder="Ex: Portfólio pessoal, Sistema de Vendas..."
+                />
 
-            <Input 
-              id="deployLink"
-              label="Link do Deploy"
-              placeholder="Ex: https://meuprojeto.vercel.app"
-            />
+                <Input id={`projects.${index}.image`} label="Imagem" type="file" accept="image/" />
 
-            <Input 
-              id="githubLink"
-              label="Link do GitHub"
-              placeholder="Ex: https://github.com/usuario/nome-do-projeto"
-            />
+                <Input
+                  id={`projects.${index}.deployLink`}
+                  label="Link do Deploy"
+                  placeholder="Ex: https://meuprojeto.vercel.app"
+                />
 
-            <AutocompleteSkills 
-              name="skills"
-              label="Habilidades usadas"
-              skills={skills}
-            />
+                <Input
+                  id={`projects.${index}.githubLink`}
+                  label="Link do GitHub"
+                  placeholder="Ex: https://github.com/usuario/nome-do-projeto"
+                />
 
-            <Textarea 
-              id="description"
-              label="Descrição do Projeto"
-              placeholder="Descreva o objetivo, funcionalidades e tecnologias utilizadas..."
-            />
+                <AutocompleteSkills
+                  name={`projects.${index}.skills`}
+                  label="Habilidades usadas"
+                  skills={skills}
+                />
 
-            <div className="flex justify-center">
+                <Textarea
+                  id={`projects.${index}.description`}
+                  label="Descrição do Projeto"
+                  placeholder="Descreva o objetivo, funcionalidades e tecnologias utilizadas..."
+                />
+              </div>
+            ))}
+
+            <div className="flex gap-4 justify-end">
+              <button
+                className="border border-gray-400 py-2 px-6 rounded-lg text-gray-400 hover:opacity-70 hover:cursor-pointer focus:scale-105 transition-all duration-100 ease-in-out"
+                type="button"
+                onClick={() =>
+                  append({
+                    projectName: "",
+                    image: new DataTransfer().files,
+                    deployLink: "",
+                    githubLink: "",
+                    skills: [""],
+                    description: "",
+                  })
+                }
+              >
+                Adicionar mais
+              </button>
+
               <button
                 type="submit"
                 className="bg-green-600 rounded-lg p-2 text-black hover:bg-green-500 hover:cursor-pointer focus:scale-105 transition-all duration-100 ease-in-out"
@@ -80,6 +123,6 @@ const Projects = () => {
       </section>
     </main>
   );
-}
+};
 
 export default Projects;

@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, FieldError } from "react-hook-form";
+import { get } from "lodash";
 
 interface SelectProps extends ComponentProps<"select"> {
   id: string;
@@ -15,14 +16,16 @@ const Select = ({
   options,
   ...props
 }: SelectProps) => {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  const fieldError = get(errors, id) as FieldError | undefined;
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      <label
-        htmlFor={id}
-        className="text-gray-400"
-      >
+      <label htmlFor={id} className="text-gray-400">
         {label}
       </label>
 
@@ -33,16 +36,21 @@ const Select = ({
         {...register(id)}
         className="text-gray-400 font-bold border-1 p-2 rounded-lg"
       >
-        <option value="" disabled>{defaultOption}</option>
+        <option value="" disabled>
+          {defaultOption}
+        </option>
 
         {options.map((option, index) => (
-          <option value={option} key={index}>{option}</option>
+          <option value={option} key={index}>
+            {option}
+          </option>
         ))}
-
       </select>
 
-      {errors[id] && (
-        <p className="text-xs font-bold text-orange-400">{errors[id].message?.toString()}</p>
+      {fieldError?.message && (
+        <p className="text-xs font-bold text-orange-400">
+          {String(fieldError.message)}
+        </p>
       )}
     </div>
   );

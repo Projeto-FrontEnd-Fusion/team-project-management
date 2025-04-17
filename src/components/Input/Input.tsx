@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
-import { useFormContext, FieldError } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
+import { get } from "lodash";
 
 interface InputProps extends ComponentProps<"input"> {
   id: string;
@@ -12,7 +13,7 @@ const Input = ({ id, label, type = "text", ...props }: InputProps) => {
     formState: { errors },
   } = useFormContext();
 
-  const fieldError = errors[id] as FieldError | undefined;
+  const fieldError = get(errors, id) as FieldError | undefined;
 
   return (
     <div className="flex flex-col gap-2">
@@ -29,8 +30,8 @@ const Input = ({ id, label, type = "text", ...props }: InputProps) => {
         {...(type === "file" && { value: undefined })}
       />
 
-      {fieldError && (
-        <p className="text-xs font-bold text-orange-400">{fieldError.message}</p>
+      {fieldError?.message && (
+        <p className="text-xs font-bold text-orange-400">{String(fieldError.message)}</p>
       )}
     </div>
   );
