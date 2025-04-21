@@ -8,6 +8,7 @@ import Input from "../Input/Input";
 import Textarea from "../Textarea/Textarea";
 import AutocompleteSkills from "../AutocompleteSkills/Autocomplete";
 import useSkillsHandler from "../../hooks/useSkillsHandle";
+import { useProjectUpdate } from "../../hooks/useProjectUpdate";
 
 const Projects = () => {
   const skills = useSkillsHandler()?.data ?? [];
@@ -30,14 +31,17 @@ const Projects = () => {
     },
   });
 
-  const { control, handleSubmit } = methods;
+  const { control, handleSubmit, reset } = methods;
   const { fields, append } = useFieldArray({
     control,
     name: "projects",
   });
 
+  const { mutate } = useProjectUpdate("640a");
+
   const onSubmit = (data: formProjectsData) => {
-    console.log(data);
+    mutate(data);
+    reset();
   };
 
   return (

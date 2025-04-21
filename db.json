@@ -17,27 +17,54 @@
       ],
       "softSkills": [
         "4"
-      ]
-    },
-    {
-      "id": "efca",
-      "name": "teste rotas",
-      "stack": "Frontend",
-      "level": "Code Wizard",
-      "profileImage": {
-        "0": {}
-      },
-      "professionalProfiles": [
+      ],
+      "projetos": [
         {
-          "url": "https://github.com/",
-          "platform": "LinkedIn"
+          "projectName": "teste 3",
+          "image": {
+            "0": {}
+          },
+          "deployLink": "https://github.com.br",
+          "githubLink": "https://github.com.br",
+          "skills": [
+            "5"
+          ],
+          "description": "testetesteteste"
+        },
+        {
+          "projectName": "teste 3",
+          "image": {
+            "0": {}
+          },
+          "deployLink": "https://github.com.br",
+          "githubLink": "https://github.com.br",
+          "skills": [
+            "6"
+          ],
+          "description": "testetteste"
+        },
+        {
+          "projectName": "teste 4",
+          "image": {
+            "0": {}
+          },
+          "deployLink": "https://github.com.br",
+          "githubLink": "https://github.com.br",
+          "skills": [
+            "5"
+          ],
+          "description": "testesteste"
+        },
+        {
+          "projectName": "teste 5",
+          "image": {},
+          "deployLink": "https://github.com.br",
+          "githubLink": "https://github.com.br",
+          "skills": [
+            "2"
+          ],
+          "description": "testeteste"
         }
-      ],
-      "skills": [
-        "2"
-      ],
-      "softSkills": [
-        "3"
       ]
     }
   ],
