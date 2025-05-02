@@ -9,6 +9,7 @@ import Textarea from "../Textarea/Textarea";
 import AutocompleteSkills from "../AutocompleteSkills/Autocomplete";
 import useSkillsHandler from "../../hooks/useSkillsHandle";
 import { useProjectUpdate } from "../../hooks/useProjectUpdate";
+import { IoIosClose } from "react-icons/io";
 
 const Projects = () => {
   const skills = useSkillsHandler()?.data ?? [];
@@ -32,7 +33,7 @@ const Projects = () => {
   });
 
   const { control, handleSubmit, reset } = methods;
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: "projects",
   });
@@ -61,7 +62,21 @@ const Projects = () => {
                 className="border-t border-gray-400 flex flex-col gap-8 pt-8"
                 key={field.id}
               >
-                <h2 className="font-bold text-gray-400">Projeto {index + 1}</h2>
+                <div className="flex justify-between">
+                  <h2 className="font-bold text-gray-400">
+                    Projeto {index + 1}
+                  </h2>
+
+                  {index > 0 && (
+                    <button
+                      type="button"
+                      className="hover:cursor-pointer self-center"
+                      onClick={() => remove(index)}
+                    >
+                      <IoIosClose className="scale-200 text-gray-400 hover:scale-250 transition-all duration-200 ease-in-out" />
+                    </button>
+                  )}
+                </div>
 
                 <Input
                   id={`projects.${index}.projectName`}
@@ -69,7 +84,12 @@ const Projects = () => {
                   placeholder="Ex: Portfólio pessoal, Sistema de Vendas..."
                 />
 
-                <Input id={`projects.${index}.image`} label="Imagem" type="file" accept="image/" />
+                <Input
+                  id={`projects.${index}.image`}
+                  label="Imagem"
+                  type="file"
+                  accept="image/"
+                />
 
                 <Input
                   id={`projects.${index}.deployLink`}
